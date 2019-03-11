@@ -1,4 +1,4 @@
-17ee984fd25dc9df5a071a834fa78b3b *DESCRIPTION
+f1cb77d4ccecc23216658163b7c5e5df *DESCRIPTION
 a86efdf308b66c6113f724b7e95f1315 *NAMESPACE
 7bb83a662a7f203c24e229dfa065ae58 *R/calc_derived_1cpt.R
 4ccb7f4a0f07341c0dab08d1c2230fe8 *R/calc_derived_2cpt.R
@@ -97,16 +97,16 @@ f30f546dc54e1b1dd29c57ec07dc6634 *man/calc_ss_2cmt_linear_oral_1_lag.Rd
 853ca9af0443a819ff78f5bfb44c5006 *man/calc_ss_3cmt_linear_oral_0.Rd
 a4afe04b404fe3c17af3b6d394066764 *man/calc_ss_3cmt_linear_oral_0_lag.Rd
 3dd7a0c0d468212f2d3863dd1619406b *man/calc_ss_3cmt_linear_oral_1.Rd
-c48eb087b4e65533a9c4dedb24aba9ae *man/calc_ss_3cmt_linear_oral_1_lag.Rd
+46c84266cc4ec1b888274bc8a2dfaeea *man/calc_ss_3cmt_linear_oral_1_lag.Rd
 9b8555999dadfdf266af017fa3d5b0e6 *man/get_auc.Rd
-342909943a663dcd8b84b3b85b345dd8 *man/get_est_table.Rd
+bf3b69676b5e97e9a1763c5b76e9cc2e *man/get_est_table.Rd
 e705290058154e1f79ef295e0f1bab7c *man/get_omega.Rd
 0b1b891a846e74bf8499b2c8832754e1 *man/get_shrinkage.Rd
 e8191c204250f2243a348a56d8609b88 *man/get_sigma.Rd
 5f6df107012e33832c825c8280467e4e *man/get_theta.Rd
 efc0d5660a7d84a41d8e7a2a1ebafb13 *man/gm.Rd
 51c678866420ab7bce4edd762ae3b7a0 *man/pcv.Rd
-a865f95c825afe5198d4d6b5a2f4abdb *man/pk_curve.Rd
+244fc9f24c520e325bdfe77eb95b7c8d *man/pk_curve.Rd
 106f0077ac36146e10ec93dd48e15c30 *man/plot_nmprogress.Rd
 cc6fbcc575950f39aed1b08c1623335a *man/read_nm.Rd
 094a565e2873a217e1b24d755a9b8a1b *man/read_nmcov.Rd
