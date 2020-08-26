@@ -1,29 +1,39 @@
-#' Calculate derived pharmacokinetic parameters for a 1-, 2-, or 3-compartment linear model.
+#' Calculate derived pharmacokinetic parameters for a 1-, 2-, or 3-compartment
+#' linear model.
 #'
-#' @param CL Clearance (L/h)
-#' @param V1,V Central volume of distribution (L).  Values are synonyms; use only one.
-#' @param V2 First peripheral volume of distribution (L)
-#' @param V3 Second peripheral volume of distribution (L)
-#' @param Q2,Q Intercompartmental clearance from central to first peripheral compartment (L/h).  Values are synonyms; use only one.
-#' @param Q3 Intercompartmental clearance from central to second peripheral compartment (L/h)
-#' @param ka Absorption rate (1/hr)
-#' @param tlag Absorption lag time (hr)
-#' @param type Parameters to return. Default is \code{"all"}; see details for other options that are specific to the number of compartments.
-#' @param sigdig Number of significant digits to be returned. Default is \code{5}.
-#' @param verbose For `calc_derived()`, provide a message indicating the type of model detected.
-#' @param ... Passed to the other `calc_derived_*()` functions.
+#' @param CL Clearance (volume per time units, e.g. L/h)
+#' @param V1,V Central volume of distribution (volume units, e.g. L).  Values
+#'   are synonyms; use only one.
+#' @param V2 First peripheral volume of distribution (volume units, e.g. L)
+#' @param V3 Second peripheral volume of distribution (volume units, e.g. L)
+#' @param Q2,Q Intercompartmental clearance from central to first peripheral
+#'   compartment (volume per time units, e.g. L/h).  Values are synonyms; use
+#'   only one.
+#' @param Q3 Intercompartmental clearance from central to second peripheral
+#'   compartment (volume per time units, e.g. L/h)
+#' @param ka Absorption rate (inverse time units, e.g. 1/h)
+#' @param tlag Absorption lag time (time units, e.g. h)
+#' @param type Parameters to return. Default is \code{"all"}.  If not
+#'   \code{"all"}, this may be a vector from the names of the return value list.
+#' @param sigdig Number of significant digits to be returned. Default is
+#'   \code{5}.
+#' @param verbose For \code{calc_derived()}, provide a message indicating the
+#'   type of model detected.
+#' @param ... Passed to the other \code{calc_derived_*()} functions.
 #' 
-#' @return Return a list of derived PK parameters for a 1-, 2-, or 3-compartment linear model given provided clearances and volumes based on the `type`.
+#' @return Return a list of derived PK parameters for a 1-, 2-, or 3-compartment
+#'   linear model given provided clearances and volumes based on the
+#'   \code{type}.
 #' \itemize{ 
-#'   \item \code{Vss}: Volume of distribution at steady state, \eqn{V_{ss}} (L); 1-, 2-, and 3-compartment
-#'   \item \code{k10}: First-order elimination rate, \eqn{k_{10}} (/h); 1-, 2-, and 3-compartment
-#'   \item \code{k12}: First-order rate of transfer from central to first peripheral compartment, \eqn{k_{12}} (/h); 2- and 3-compartment
-#'   \item \code{k21}: First-order rate of transfer from first peripheral to central compartment, \eqn{k_{21}} (/h); 2- and 3-compartment
-#'   \item \code{k13}: First-order rate of transfer from central to second peripheral compartment, \eqn{k_{13}} (/h); 3-compartment
-#'   \item \code{k31}: First-order rate of transfer from second peripheral to central compartment,\eqn{k_{31}} (/h); 3-compartment
-#'   \item \code{thalf_alpha}: \eqn{t_{1/2,\alpha}} (h); 1-, 2-, and 3-compartment
-#'   \item \code{thalf_beta}: \eqn{t_{1/2,\beta}} (h); 2- and 3-compartment
-#'   \item \code{thalf_gamma}: \eqn{t_{1/2,\gamma}} (h); 3-compartment
+#'   \item \code{Vss}: Volume of distribution at steady state, \eqn{V_{ss}} (volume units, e.g. L); 1-, 2-, and 3-compartment
+#'   \item \code{k10}: First-order elimination rate, \eqn{k_{10}} (inverse time units, e.g. 1/h); 1-, 2-, and 3-compartment
+#'   \item \code{k12}: First-order rate of transfer from central to first peripheral compartment, \eqn{k_{12}} (inverse time units, e.g. 1/h); 2- and 3-compartment
+#'   \item \code{k21}: First-order rate of transfer from first peripheral to central compartment, \eqn{k_{21}} (inverse time units, e.g. 1/h); 2- and 3-compartment
+#'   \item \code{k13}: First-order rate of transfer from central to second peripheral compartment, \eqn{k_{13}} (inverse time units, e.g. 1/h); 3-compartment
+#'   \item \code{k31}: First-order rate of transfer from second peripheral to central compartment,\eqn{k_{31}} (inverse time units, e.g. 1/h); 3-compartment
+#'   \item \code{thalf_alpha}: \eqn{t_{1/2,\alpha}} (time units, e.g. h); 1-, 2-, and 3-compartment
+#'   \item \code{thalf_beta}: \eqn{t_{1/2,\beta}} (time units, e.g. h); 2- and 3-compartment
+#'   \item \code{thalf_gamma}: \eqn{t_{1/2,\gamma}} (time units, e.g. h); 3-compartment
 #'   \item \code{alpha}: \eqn{\alpha}; 1-, 2-, and 3-compartment
 #'   \item \code{beta}: \eqn{\beta}; 2- and 3-compartment
 #'   \item \code{gamma}: \eqn{\beta}; 3-compartment
@@ -35,14 +45,16 @@
 #'   \item \code{fracC}: fractional C; 3-compartment
 #'  }
 #'
-#' The input parameters with standardized names (`V1`, `V2`, `V3`, `CL`, `Q2`,
-#' and `Q3`) are also returned in the list, and if provided, additional PK
-#' parameters of `ka` and `lag` are also returned in the list.  All inputs may
-#' be scalars or vectors.
+#' The input parameters with standardized names (\code{V1}, \code{V2},
+#' \code{V3}, \code{CL}, \code{Q2}, and \code{Q3}) are also returned in the
+#' list, and if provided, additional PK parameters of `ka` and `lag` are also
+#' returned in the list.  All inputs may be scalars or vectors.
 #'
 #' @author Justin Wilkins, \email{justin.wilkins@@occams.com}
 #' @references Shafer S. L. \code{CONVERT.XLS}
-#' @references Rowland M, Tozer TN. Clinical Pharmacokinetics and Pharmacodynamics: Concepts and Applications (4th). Lippincott Williams & Wilkins, Philadelphia, 2010.  
+#' @references Rowland M, Tozer TN. Clinical Pharmacokinetics and
+#'   Pharmacodynamics: Concepts and Applications (4th). Lippincott Williams &
+#'   Wilkins, Philadelphia, 2010.
 #'
 #' @examples
 #' params <- calc_derived(CL=29.4, V1=23.4, V2=114, V3=4614, Q2=270, Q3=73)
@@ -106,6 +118,7 @@ calc_derived_1cpt <- function(CL, V=NULL, V1=NULL, ka=NULL, tlag=NULL, type="all
       stop("Invalid value for `type`: ", type)
     }
   }
+  o[sapply(o, is.null)] <- NULL   # drops NULL values
   o
 }
 
@@ -129,8 +142,8 @@ calc_derived_2cpt <- function(CL, V1=NULL, V2, Q2=NULL, V=NULL, Q=NULL, ka=NULL,
   
   ### variables
   k10   <- CL/V1
-  k12   <- Q/V1
-  k21   <- Q/V2
+  k12   <- Q2/V1
+  k21   <- Q2/V2
   
   a0 <- k10 * k21
   a1 <- -(k10 + k12 + k21)
@@ -172,6 +185,7 @@ calc_derived_2cpt <- function(CL, V1=NULL, V2, Q2=NULL, V=NULL, Q=NULL, ka=NULL,
       stop("Invalid value for `type`: ", type)
     }
   }
+  o[sapply(o, is.null)] <- NULL   # drops NULL values
   o
 }
 
@@ -266,5 +280,6 @@ calc_derived_3cpt <- function(CL, V1=NULL, V2, V3, Q2=NULL, Q3, V=NULL, Q=NULL, 
       stop("Invalid value for `type`: ", type)
     }
   }
+  o[sapply(o, is.null)] <- NULL   # drops NULL values
   o
 }

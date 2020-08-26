@@ -1,10 +1,10 @@
 #' Read PsN SCM output into a format suitable for further use.
 #'
 #' \code{read_scm} returns a summary of a Perl-speaks-NONMEM (PsN, \url{https://uupharmacometrics.github.io/PsN/}) SCM (stepwise covariate modeling)
-#' procedure. It depends on the presence of an \code{scmlog.txt} file in the
+#' procedure. It depends on the presence of \code{scmlog.txt} and \code{short_scmlog.txt} files in the
 #' specified directory.
 #'
-#' @param dir A PsN SCM folder (containing \code{scmlog.txt}).
+#' @param dir A PsN SCM folder (containing \code{scmlog.txt} and \code{short_scmlog.txt}).
 #' @param startPhase Where to start collating the output; can be \code{"forward"} (the default) or \code{"backward"}.
 #'
 #' @return A list of data frames, containing
@@ -23,7 +23,7 @@
 #' @seealso Lindbom L, Ribbing J & Jonsson EN (2004). Perl-speaks-NONMEM (PsN) - A Perl module for NONMEM related programming. Computer Methods and Programs in Biomedicine, 75(2), 85-94. \url{https://doi.org/10.1016/j.cmpb.2003.11.003}
 #' @seealso Lindbom L, Pihlgren P & Jonsson N (2005). PsN-Toolkit - A collection of computer intensive statistical methods for non-linear mixed effect modeling using NONMEM. Computer Methods and Programs in Biomedicine, 79(3), 241-257. \url{https://doi.org/10.1016/j.cmpb.2005.04.005}
 #' @author Justin Wilkins, \email{justin.wilkins@@occams.com}
-#' 
+#' @family NONMEM reading
 #' @examples
 #' \dontrun{
 #' scm <- read_scm("E:/DrugX/ModelDevelopment/scm310")
