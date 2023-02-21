@@ -8,7 +8,7 @@
 \alias{calc_sd_3cmt_linear_oral_0}
 \alias{calc_sd_3cmt_linear_oral_0_lag}
 \alias{calc_sd_3cmt_linear_oral_1}
-\title{Calculate C(t) for a 1-compartment linear model}
+\title{Calculate C(t) for a 3-compartment linear model}
 \usage{
 calc_sd_3cmt(t, dose, dur = NULL, tinf = NULL, ...)
 
@@ -39,23 +39,23 @@ calc_sd_3cmt_linear_oral_1(t, dose, ...)
 Concentration of drug at requested time (\code{t}) after a single dose, given provided set of parameters and variables.
 }
 \description{
-Calculate C(t) for a 1-compartment linear model
+Calculate C(t) for a 3-compartment linear model
 }
 \section{Functions}{
 \itemize{
-\item \code{calc_sd_3cmt_linear_bolus}: Calculate C(t) for a 3-compartment linear model after a single IV bolus dose
+\item \code{calc_sd_3cmt_linear_bolus()}: Calculate C(t) for a 3-compartment linear model after a single IV bolus dose
 
-\item \code{calc_sd_3cmt_linear_oral_1_lag}: Calculate C(t) for a 3-compartment linear model after a single oral dose
+\item \code{calc_sd_3cmt_linear_oral_1_lag()}: Calculate C(t) for a 3-compartment linear model after a single oral dose
 
-\item \code{calc_sd_3cmt_linear_infusion}: Calculate C(t) for a 3-compartment linear model after a single IV infusion
+\item \code{calc_sd_3cmt_linear_infusion()}: Calculate C(t) for a 3-compartment linear model after a single IV infusion
 
-\item \code{calc_sd_3cmt_linear_oral_0}: Calculate C(t) for a 3-compartment linear model after a single dose, with zero-order absorption
+\item \code{calc_sd_3cmt_linear_oral_0()}: Calculate C(t) for a 3-compartment linear model after a single dose, with zero-order absorption
 
-\item \code{calc_sd_3cmt_linear_oral_0_lag}: Calculate C(t) for a 3-compartment linear model after a single dose, with zero-order absorption and a lag time
+\item \code{calc_sd_3cmt_linear_oral_0_lag()}: Calculate C(t) for a 3-compartment linear model after a single dose, with zero-order absorption and a lag time
 
-\item \code{calc_sd_3cmt_linear_oral_1}: Calculate C(t) for a 3-compartment linear model after a single oral dose
+\item \code{calc_sd_3cmt_linear_oral_1()}: Calculate C(t) for a 3-compartment linear model after a single oral dose
+
 }}
-
 \examples{
 Ct <- calc_sd_3cmt_linear_bolus(t = 11.75, CL = 3.5, V1 = 20, V2 = 500,
     V3 = 200, Q2 = 0.5, Q3 = 0.05, dose = 100)
@@ -78,4 +78,6 @@ Rowland M, Tozer TN. Clinical Pharmacokinetics and Pharmacodynamics: Concepts an
 }
 \author{
 Justin Wilkins, \email{justin.wilkins@occams.com}
+
+Bill Denney, \email{wdenney@humanpredictions.com}
 }

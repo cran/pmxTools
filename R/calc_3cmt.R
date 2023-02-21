@@ -1,12 +1,13 @@
 # Single Dose ####
 
-#' Calculate C(t) for a 1-compartment linear model
+#' Calculate C(t) for a 3-compartment linear model
 #'
 #' @inheritParams calc_sd_1cmt
 #' @param ... Passed to `calc_derived_3cpt()`
 #' @return Concentration of drug at requested time (\code{t}) after a single dose, given provided set of parameters and variables.
 #'
 #' @author Justin Wilkins, \email{justin.wilkins@@occams.com}
+#' @author Bill Denney, \email{wdenney@@humanpredictions.com}
 #' @references Bertrand J & Mentre F (2008). Mathematical Expressions of the Pharmacokinetic and Pharmacodynamic Models
 #' implemented in the Monolix software. \url{http://lixoft.com/wp-content/uploads/2016/03/PKPDlibrary.pdf}
 #' @references Rowland M, Tozer TN. Clinical Pharmacokinetics and Pharmacodynamics: Concepts and Applications (4th). Lippincott Williams & Wilkins, Philadelphia, 2010.  

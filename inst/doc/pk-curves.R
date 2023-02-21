@@ -6,7 +6,7 @@ knitr::opts_chunk$set(
 
 ## ----setup, warning=F, message=F----------------------------------------------
 library(pmxTools)
-library(gridExtra)
+library(patchwork)
 
 ## ----1cptdemo, fig.height=10, fig.width=7,message=FALSE-----------------------
 
@@ -46,7 +46,7 @@ p1.6 <- ggplot(df1, aes(t, Cp6)) +
   geom_line() +
   labs(title="First-order oral with lag time")
 
-grid.arrange(p1.1, p1.2, p1.3, p1.4, p1.5, p1.6, nrow=3)
+p1.1 + p1.2 + p1.3 + p1.4 + p1.5 + p1.6 + plot_layout(nrow=3)
 
 
 ## ----1cptssdemo, fig.height=10, fig.width=7,message=FALSE---------------------
@@ -85,7 +85,7 @@ p1.6ss <- ggplot(df1ss, aes(t, Cp6)) +
   geom_line() +
   labs(title="First-order oral with lag time")
 
-grid.arrange(p1.1ss, p1.2ss, p1.3ss, p1.4ss, p1.5ss, p1.6ss, nrow=3)
+p1.1ss + p1.2ss + p1.3ss + p1.4ss + p1.5ss + p1.6ss + plot_layout(nrow=3)
 
 
 ## ----2cptdemo, fig.height=10, fig.width=7, message=FALSE----------------------
@@ -124,7 +124,7 @@ p2.6 <- ggplot(df2, aes(t, Cp6)) +
   geom_line() +
   labs(title="First-order oral with lag time")
 
-grid.arrange(p2.1, p2.2, p2.3, p2.4, p2.5, p2.6, nrow=3)
+p2.1 + p2.2 + p2.3 + p2.4 + p2.5 + p2.6 + plot_layout(nrow=3)
 
 
 ## ----2cptssdemo, fig.height=10, fig.width=7,message=FALSE---------------------
@@ -163,7 +163,7 @@ p2.6ss <- ggplot(df2ss, aes(t, Cp6)) +
   geom_line() +
   labs(title="First-order oral with lag time")
 
-grid.arrange(p2.1ss, p2.2ss, p2.3ss, p2.4ss, p2.5ss, p2.6ss, nrow=3)
+p2.1ss + p2.2ss + p2.3ss + p2.4ss + p2.5ss + p2.6ss + plot_layout(nrow=3)
 
 
 ## ----3cptdemo, fig.height=10, fig.width=7, message=FALSE----------------------
@@ -202,7 +202,7 @@ p3.6 <- ggplot(df3, aes(t, Cp6)) +
   geom_line() +
   labs(title="First-order oral with lag time")
 
-grid.arrange(p3.1, p3.2, p3.3, p3.4, p3.5, p3.6, nrow=3)
+p3.1 + p3.2 + p3.3 + p3.4 + p3.5 + p3.6  + plot_layout(nrow=3)
 
 
 ## ----3cptssdemo, fig.height=10, fig.width=7,message=FALSE---------------------
@@ -241,8 +241,7 @@ p3.6ss <- ggplot(df3ss, aes(t, Cp6)) +
   geom_line() +
   labs(title="First-order oral with lag time")
 
-grid.arrange(p3.1ss, p3.2ss, p3.3ss, p3.4ss, p3.5ss, p3.6ss, nrow=3)
-
+p3.1ss + p3.2ss + p3.3ss + p3.4ss + p3.5ss + p3.6ss  + plot_layout(nrow=3)
 
 ## ----pkcurve1, fig.height=4, fig.width=7,message=FALSE------------------------
 

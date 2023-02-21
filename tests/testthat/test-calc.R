@@ -1,8 +1,6 @@
 library(testthat)
 library(pmxTools)
 
-context("Closed-form solutions")
-
 ### 1-compartment
 
 test_that("1-compartment linear, IV bolus, single-dose", {
@@ -152,12 +150,12 @@ test_that("3-compartment linear, zero-order oral with lag time, single-dose", {
 })
 
 test_that("3-compartment linear, first-order oral, single-dose", {
-  t <- calc_sd_3cmt_linear_oral_1(t=seq(0, 24, by=3), CL = 87.6, V1 = 20.1, V2 = 186, V3=749, Q2 = 111, Q3 = 53.4, dose = 280, ka = 1.5)
+  expect_warning(t <- calc_sd_3cmt_linear_oral_1(t=seq(0, 24, by=3), CL = 87.6, V1 = 20.1, V2 = 186, V3=749, Q2 = 111, Q3 = 53.4, dose = 280, ka = 1.5))
   expect_equal(signif(t, 4), c(0.000000, 0.18840, 0.08987, 0.05655, 0.04174, 0.03386, 0.02878, 0.02497, 0.02185))
 })
 
 test_that("3-compartment linear, first-order oral with lag time, single-dose", {
-  t <- calc_sd_3cmt_linear_oral_1_lag(t=seq(0, 24, by=3), CL = 87.6, V1 = 20.1, V2 = 186, V3=749, Q2 = 111, Q3 = 53.4, dose = 280, ka = 1.5, tlag = 1.2)
+  expect_warning(t <- calc_sd_3cmt_linear_oral_1_lag(t=seq(0, 24, by=3), CL = 87.6, V1 = 20.1, V2 = 186, V3=749, Q2 = 111, Q3 = 53.4, dose = 280, ka = 1.5, tlag = 1.2))
   expect_equal(signif(t, 4), c(0.000000, 0.33090, 0.11500, 0.06653, 0.04644, 0.03653, 0.03060, 0.02639, 0.02303))
 })
 
@@ -182,11 +180,37 @@ test_that("3-compartment linear, zero-order oral with lag time, steady-state", {
 })
 
 test_that("3-compartment linear, first-order oral, steady-state", {
-  t <- calc_ss_3cmt_linear_oral_1(tad=seq(0, 24, by=3), CL = 87.6, V1 = 20.1, V2 = 186, V3=749, Q2 = 111, Q3 = 53.4, dose = 280, ka = 1.5, tau=12)
+  expect_warning(t <- calc_ss_3cmt_linear_oral_1(tad=seq(0, 24, by=3), CL = 87.6, V1 = 20.1, V2 = 186, V3=749, Q2 = 111, Q3 = 53.4, dose = 280, ka = 1.5, tau=12))
   expect_equal(signif(t, 4), c(0.09642, 0.27040, 0.16100, 0.11880, 0.09642, 0.08196, 0.07112, 0.06225, 0.05468))
 })
 
 test_that("3-compartment linear, first-order oral with lag time, steady-state", {
-  t <- calc_ss_3cmt_linear_oral_1_lag(tad=seq(0, 24, by=3), CL = 87.6, V1 = 20.1, V2 = 186, V3=749, Q2 = 111, Q3 = 53.4, dose = 280, ka = 1.5, tlag = 1.2, tau=12)
+  expect_warning(t <- calc_ss_3cmt_linear_oral_1_lag(tad=seq(0, 24, by=3), CL = 87.6, V1 = 20.1, V2 = 186, V3=749, Q2 = 111, Q3 = 53.4, dose = 280, ka = 1.5, tlag = 1.2, tau=12))
   expect_equal(signif(t, 4), c(0.10400, 0.41810, 0.19010, 0.13210, 0.10400, 0.08716, 0.07516, 0.06561, 0.05757))
 })
+
+### PK curves
+
+
+test_that("PK curves", {
+
+  expect_snapshot(pk_curve(t=seq(0,72,by=0.1), model="1cmt_bolus", ii=12, addl=5,
+                        params=list(CL=2.5, V=25)))
+  expect_snapshot(pk_curve(t=seq(0,72,by=0.1), model="1cmt_oral", ii=12, addl=5,
+                        params=list(CL=2.5, V=25, ka=1)))
+  expect_snapshot(pk_curve(t=seq(0,72,by=0.1), model="1cmt_infusion", ii=12, addl=5,
+                        params=list(CL=2.5, V=25, tinf=3)))
+  expect_snapshot(pk_curve(t=seq(0,72,by=0.1), model="2cmt_bolus", ii=24, addl=5,
+                        params=list(CL=2.5, V1=25, V2=50, Q=5)))
+  expect_snapshot(pk_curve(t=seq(0,72,by=0.1), model="2cmt_oral", ii=24, addl=5,
+                        params=list(CL=2.5, V1=25, V2=50, Q=5, ka=1)))
+  expect_snapshot(pk_curve(t=seq(0,72,by=0.1), model="2cmt_infusion", ii=24, addl=5,
+                        params=list(CL=2.5, V1=25, V2=50, Q=5, tinf=3)))
+  expect_snapshot(pk_curve(t=seq(0,72,by=0.1), model="3cmt_bolus", ii=24, addl=5,
+                        params=list(CL=0.25, V1=25, V2=50, V3=100, Q2=1, Q3=0.1)))
+  expect_snapshot(pk_curve(t=seq(0,72,by=0.1), model="3cmt_oral", ii=24, addl=5,
+                        params=list(CL=0.25, V1=25, V2=50, V3=100, Q2=1, Q3=0.1, ka=1)))
+  expect_snapshot(pk_curve(t=seq(0,72,by=0.1), model="3cmt_infusion", ii=24, addl=5,
+                        params=list(CL=0.25, V1=25, V2=50, V3=100, Q2=1, Q3=0.1, tinf=3)))
+})
+
