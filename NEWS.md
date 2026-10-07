@@ -1,3 +1,23 @@
+# pmxTools 1.6
+
+* Added `cut_quantile()`, which creates quantile-based bins for one or more continuous variables, with per-variable control over the number of groups.
+
+* Added `datamap()`, which plots individual dosing and observation records over time.
+
+* `dgr_table()` now takes `fields` as a named character vector mapping column names to display labels. The separate `names` argument is deprecated, but unnamed `fields` with `names` continues to work.
+
+* Added dependencies `purrr` and `tidyr`.
+
+* Fixed `read_nm()`, which passed the file extension to `xml2::read_xml()` as an encoding rather than appending it to the file name, and read the unresolved file name instead of the one located on disk. The `directory` argument and file names given without the `.xml` extension were therefore ignored, and macOS reported an `Unsupported encoding: .xml` warning (#36).
+
+* Removed the blanket `stats` and `utils` imports, which caused a `replacing previous import 'stats::filter' by 'dplyr::filter'` warning when the package was loaded (#36).
+
+* `calc_derived()` and the `calc_derived_*()` functions now return `AUCtau` and `AUCtau_dose_normalized` as plain numbers.  PKNCA 0.12.1.9000 attaches a `method` attribute to the AUC it returns, which propagated into the derived-parameter list and broke comparisons against plain numeric values (#37).
+
+* Test snapshots are now committed, the CI workflows have been refreshed, and the documentation has been regenerated with roxygen2 8.1.0 (#36).
+
+* `calc_derived()` and the `calc_derived_*()` functions now work with vector inputs (#29).
+
 # pmxTools 1.5
 
 * `plot_dist` has been rewritten to adapt to `ggplot2` 4.0.0 changes, and to make it more intuitive to interpret

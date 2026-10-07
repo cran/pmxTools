@@ -48,8 +48,9 @@ overflow: visible;
 }
 </style>
 <style type="text/css" data-origin="pandoc">
+html { -webkit-text-size-adjust: 100%; }
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -60,7 +61,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
 { counter-reset: source-line 0; }
@@ -345,7 +346,7 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 <p><code>pmxTools</code> includes functions for constructing
 pharmacokinetic (PK) concentration-time curves for a range of common
 compartmental systems using PK parameters and microconstants. The
-underlying solutions are based on Julie Bertrand and France Mentré’s <a href="https://www.facm.ucl.ac.be/cooperation/Vietnam/WBI-Vietnam-October-2011/Modelling/Monolix32_PKPD_library.pdf">Mathematical
+underlying solutions are based on Julie Bertrand and France Mentré’s <a href="https://web.archive.org/web/20231002021707/https://www.facm.ucl.ac.be/cooperation/Vietnam/WBI-Vietnam-October-2011/Modelling/Monolix32_PKPD_library.pdf">Mathematical
 Expressions of the Pharmacokinetic and Pharmacodynamic Models
 implemented in the Monolix software</a>, published in 2008.</p>
 <p>The options available are by necessity confined to one-, two- and

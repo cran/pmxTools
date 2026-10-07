@@ -30,12 +30,16 @@ For ggplot2 scales.
 \item \code{ftrans_blq_log()}: Log-scale transformation
 
 }}
+\examples{
+ftrans_blq_linear(lloq=1, multiplier=0.5)(c(0.2, 1, 5))
+ftrans_blq_log(lloq=1, multiplier=0.5)(c(0.2, 1, 5))
+}
 \seealso{
-Other BLQ Transformation: 
-\code{\link{blq_trans}()},
-\code{\link{breaks_blq_general}()},
-\code{\link{estimate_lloq}()},
-\code{\link{itrans_blq_linear}()},
-\code{\link{label_blq}()}
+Other BLQ Transformation:
+\code{\link[=blq_trans]{blq_trans()}},
+\code{\link[=breaks_blq_general]{breaks_blq_general()}},
+\code{\link[=estimate_lloq]{estimate_lloq()}},
+\code{\link[=itrans_blq_linear]{itrans_blq_linear()}},
+\code{\link[=label_blq]{label_blq()}}
 }
 \concept{BLQ Transformation}
